@@ -1,21 +1,24 @@
+function toggleText() {
+    var $this = $(this),
+        $moreText = $('#moreText'),
+        $text = $('.text'),
+        i = $this.data('toggle');
 
-var i = 0;
-$('#read').click(function(){
-    if(i===0){
-    $('.text').animate({height: '210px'},1000, function(){
-        $('#moreText').css({display: 'block'});
-        $('#read').text('скрыть');
-    });  
-    i=1;
+    if(!i || i === '0'){
+        $text.animate({height: '210px'},1000, function(){
+            $moreText.css({display: 'block'});
+            $this.text('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...');
+        }); 
+        $this.data('toggle', 1);
+    } else{
+        $text.animate({height: '70px'},1000, function(){
+            $moreText.css({display: 'none'});
+            $this.text('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...');
+        });       
+        $this.data('toggle', 0);
     }
-    else{
-        $('.text').animate({height: '70px'},1000, function(){
-        $('#moreText').css({display: 'none'});
-        $('#read').text('читать далее...');
-    });       
-        i=0; 
-    }
-});
+}
+$('#read').click(toggleText);
 
 $(document).ready(function(){
     $('#up').hide();
